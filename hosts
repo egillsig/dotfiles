@@ -1,0 +1,21 @@
+127.0.0.1	localhost
+127.0.1.1	Aspire
+
+#dv
+10.160.66.70 nginx
+10.160.66.71 dyno1
+10.160.66.72 dyno2
+10.160.66.73 dyno3
+10.160.66.74 dyno4
+
+10.160.66.91 hobbit.dv.is
+10.160.66.92 joningi.dv.is
+10.160.66.94 egill.dv.is
+10.160.66.100 postgres
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
