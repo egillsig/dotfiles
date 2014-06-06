@@ -1,4 +1,4 @@
-call pathogen#infect()
+"call pathogen#infect()
 
 "tab settings
 set tabstop=4
@@ -34,10 +34,10 @@ function! Incr()
 endfunction
 vnoremap <C-a> :call Incr()<CR>`'")'")
 
-map <C-n> :NERDTree<Enter>
+"map <C-n> :NERDTree<Enter>
 
 "rainbow parenthesis
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces

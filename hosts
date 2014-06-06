@@ -1,5 +1,5 @@
 127.0.0.1	localhost
-127.0.1.1	Aspire
+127.0.1.1	dv
 
 #dv
 10.160.66.65 metal1
@@ -10,11 +10,26 @@
 10.160.66.73 dyno3
 10.160.66.74 dyno4
 
+10.160.66.76 worker1
+10.160.66.77 worker2
+10.160.66.78 worker3
+10.160.66.79 worker4
+
 10.160.66.91 hobbit.dv.is
 10.160.66.92 joningi.dv.is
 10.160.66.94 egill.dv.is
 10.160.66.95 adalsteinn.dv.is
 10.160.66.100 postgres
+
+#innanhuss
+192.168.20.198 zimbra
+192.168.20.151 nfs
+192.168.20.11 asterisk
+192.168.20.200 xen
+192.168.20.73 hermes
+192.168.20.92 dev
+192.168.20.2 sbs
+192.168.20.3 samba
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
