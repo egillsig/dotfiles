@@ -71,12 +71,12 @@ export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 alias ll='ls -alhF'
 alias la='ls -A'
 
+
 alias py='ipython'
 alias his='history | grep'
 
 #django
 alias shell='python manage.py shell'
-alias syncdb='python manage.py syncdb'
 alias run='python manage.py runserver'
 
 alias vi='vim'
@@ -88,7 +88,7 @@ alias va='vim ~/.vimrc'
 alias ca='vim ~/.i3/config'
 
 alias ins='sudo apt-get install'
-#alias vpn='sudo /usr/sbin/vpnc'
+alias pins='pip install'
 
 alias dev='ssh egill@egill.dv.is'
 
