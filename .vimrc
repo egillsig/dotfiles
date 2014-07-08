@@ -34,10 +34,13 @@ function! Incr()
 endfunction
 vnoremap <C-a> :call Incr()<CR>`'")'")
 
-"map <C-n> :NERDTree<Enter>
+"Toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
+"Close NERDTree if only thing open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-"rainbow parenthesis
-"au VimEnter * RainbowParenthesesToggle
-"au Syntax * RainbowParenthesesLoadRound
-"au Syntax * RainbowParenthesesLoadSquare
-"au Syntax * RainbowParenthesesLoadBraces
+"CTRL-P options
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+
