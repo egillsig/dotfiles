@@ -23,7 +23,7 @@ map k gk
 map <Down> gj
 map <Up> gk
 
-" lsit increment
+" list increment
 function! Incr()
     let a = line('.') - line("'<")
     let c = virtcol("'<")
