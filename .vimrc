@@ -44,3 +44,9 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 
+" Standard CtrlP also in insert mode
+imap <C-p> <ESC>:CtrlP<CR>
+
+" Shortcuts
+imap <C-w> <Esc><C-w> " move through windows in insert mode
+imap <C-v> <Esc><C-v> " allow block selection in insert mode
