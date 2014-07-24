@@ -34,7 +34,15 @@ function! Incr()
 endfunction
 vnoremap <C-a> :call Incr()<CR>`'")'")
 
-"map <C-n> :NERDTree<Enter>
+"Toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
+"Close NERDTree if only thing open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"CTRL-P options
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
 
 " Standard CtrlP also in insert mode
 imap <C-p> <ESC>:CtrlP<CR>
