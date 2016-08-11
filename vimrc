@@ -5,12 +5,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
+" Plugins
 call plug#begin('~/.vim/plugged')
-Plug 'derekwyatt/vim-scala'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 " Plug 'Valloric/YouCompleteMe'
-Plug 'vim-ruby/vim-ruby'
+Plug 'flazz/vim-colorschemes'
+
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 
 "" snippets
 "Plug 'SirVer/ultisnips'
@@ -22,12 +25,15 @@ Plug 'vim-ruby/vim-ruby'
 
 call plug#end()
 
-
-filetype plugin indent on
+" Indentation rules and plugins according to detected filetype
+if has("autocmd")
+  filetype plugin indent on
+endif
 
 "tab settings
 set expandtab
 set softtabstop=4
+set tabstop=4
 set shiftwidth=4
 set backspace=indent,eol,start
 
@@ -35,11 +41,33 @@ set backspace=indent,eol,start
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 set list
 
-syntax on
+if has("syntax")
+  syntax on
+endif
+
+" Jump to last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching (case sensitive iff pattern contains an uppercase letter)
+set incsearch		" Incremental search
+set autowrite		" Automatically save before commands like :next and :make
+set hidden		" Hide buffers when they are abandoned
+set mouse=a		" Enable mouse usage (all modes)
+
 set background=dark
+colorscheme lucid
 
 "highlight searching
 set hlsearch
+
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>
+
 
 "line numbering
 set nu
@@ -70,7 +98,7 @@ let g:ctrlp_cmd = 'CtrlP'
 imap <C-p> <ESC>:CtrlP<CR>
 
 " Shortcuts
-imap <C-w> <Esc><C-w> " move through windows in insert mode
+" imap <C-w> <Esc><C-w> " move through windows in insert mode
 imap <C-v> <Esc><C-v> " allow block selection in insert mode
 
 " noremap K i<CR><Esc> " Split line
@@ -93,12 +121,10 @@ autocmd FileType tex setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sml setlocal shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 autocmd FileType erb setlocal shiftwidth=2 softtabstop=2
+autocmd FileType vim setlocal shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
 let g:syntastic_scala_checkers = ['']
 let g:syntastc_disabled_filetypes=['java']
-
-"This unsets the "last search pattern" register by hitting return
-nnoremap <CR> :noh<CR><CR>
 
 augroup filetypedetect
     au! BufRead,BufNewFile *.sage,*.spyx,*.pyx setfiletype python
@@ -112,10 +138,9 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.html.erb setfiletype html
 augroup END
 
-au Filetype clojure nmap <c-c><c-k> :Require<cr>  
+au Filetype clojure nmap <c-c><c-k> :Require<cr>
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_exec = '/usr/bin/env python'
-set mouse=a
 
 set omnifunc=syntaxcomplete#Complete
 

@@ -69,7 +69,7 @@ alias ll='ls -alhF'
 alias la='ls -A'
 alias sl='ls'
 
-alias py='ipython3'
+alias py='ipython'
 alias his='history | grep'
 
 alias cim='vim'
