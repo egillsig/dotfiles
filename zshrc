@@ -94,7 +94,5 @@ alias v='f -e vim'
 alias j='fasd_cd -d'
 
 # Virtualenvs
-export WORKON_HOME=~/Envs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source ~/.local/bin/virtualenvwrapper.sh
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

@@ -60,3 +60,8 @@ else
     cd $FASD_DIR
     sudo make install
 fi;
+
+# Python installation
+sudo apt install python3-pip
+sudo apt install virtualenv
+pip3 install --user virtualenvwrapper
