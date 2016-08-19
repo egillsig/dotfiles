@@ -7,8 +7,13 @@ OH_MY_ZSH_DIR="$HOME_DIR/.oh-my-zsh"
 FASD_DIR="$HOME_DIR/fasd"
 PACKAGE_MANAGER="/usr/bin/apt"
 
-sudo $PACKAGE_MANAGER install zsh vim tree curl git wget
+sudo $PACKAGE_MANAGER install zsh vim tree curl wget make
 sudo chsh -s `which zsh` $USERNAME
+
+mkdir $HOME_DIR/.ssh
+touch $HOME_DIR/.ssh/authorized_keys
+chmod 700 $HOME_DIR/.ssh
+chmod 600 $HOME_DIR/.ssh/authorized_keys
 
 # Install oh-my-zsh (source: github.com/robbyrussell/oh-my-zsh/blob/master/tools/install.sh)
 if [ -d "$OH_MY_ZSH_DIR" ]; then
@@ -36,7 +41,7 @@ fi
 ln -vs $DOTFILES_DIR/zshrc $HOME_DIR/.zshrc
 
 # Install fasd with apt on ubuntu
-if grep -qi 'derpderp' /proc/version;
+if [ `lsb_release -i | awk '{print $3}'` == "Ubuntu" ];
 then
     echo "Installing fasd via apt";
     if ! dpkg -s fasd > /dev/null 2>&1;
@@ -55,4 +60,3 @@ else
     cd $FASD_DIR
     sudo make install
 fi;
-
