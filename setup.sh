@@ -2,7 +2,7 @@
 
 USERNAME="egill"
 HOME_DIR="/home/$USERNAME"
-DOTFILES_DIR="$HOME_DIR/dotfiles"
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 OH_MY_ZSH_DIR="$HOME_DIR/.oh-my-zsh"
 FASD_DIR="$HOME_DIR/fasd"
 PACKAGE_MANAGER="/usr/bin/apt"

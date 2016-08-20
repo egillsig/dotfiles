@@ -74,6 +74,7 @@ nnoremap <CR> :noh<CR><CR>
 set nu
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 set numberwidth=3
+set cursorline
 
 " make j and k work as expected for long lines
 map j gj
@@ -110,6 +111,7 @@ cmap Wq wq
 
 imap jk <Esc>
 vmap <CR> <Esc>
+
 
 " IDE like curly braces
 inoremap {<cr> {<cr>}<c-o>O
