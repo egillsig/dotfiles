@@ -78,7 +78,13 @@ alias bim='vim'
 #dotfiles
 alias ea='vim ~/.zshrc'
 alias va='vim ~/.vimrc'
-alias ca='vim ~/.config/i3/config'
+
+if [ -d ~/.i3 ]; then
+    alias ca='vim ~/.i3/config'
+else
+    alias ca='vim ~/config/.i3/config'
+fi;
+
 
 alias ins='sudo apt install'
 alias rem='sudo apt remove'
@@ -94,7 +100,5 @@ alias v='f -e vim'
 alias j='fasd_cd -d'
 
 # Virtualenvs
-export WORKON_HOME=~/Envs
-source ~/.local/bin/virtualenvwrapper.sh
+# source ~/.local/bin/virtualenvwrapper.sh
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

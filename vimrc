@@ -1,3 +1,4 @@
+set t_Co=256
 " Install vim-plug automatically
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
