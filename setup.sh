@@ -7,7 +7,7 @@ OH_MY_ZSH_DIR="$HOME_DIR/.oh-my-zsh"
 FASD_DIR="$HOME_DIR/fasd"
 PACKAGE_MANAGER="/usr/bin/apt"
 
-sudo $PACKAGE_MANAGER install zsh vim tree curl wget make
+sudo $PACKAGE_MANAGER install zsh vim tree curl wget make htop
 sudo chsh -s `which zsh` $USERNAME
 
 mkdir $HOME_DIR/.ssh
@@ -40,23 +40,9 @@ if [ -f $HOME_DIR/.zshrc ]; then
 fi
 ln -vs $DOTFILES_DIR/zshrc $HOME_DIR/.zshrc
 
-# Install fasd with apt on ubuntu
-if [ `lsb_release -i | awk '{print $3}'` == "Ubuntu" ];
-then
-    echo "Installing fasd via apt";
-    if ! dpkg -s fasd > /dev/null 2>&1;
-    then
-        sudo add-apt-repository ppa:aacebedo/fasd
-        sudo apt update
-        sudo apt install fasd
-    else
-        echo "fasd already installed"
-    fi;
-else
-    echo "Installing fasd from source";
-    git clone --depth=1 https://github.com/clvv/fasd.git $FASD_DIR || {
-        echo "Error: git clone of fasd repo failed"
-    }
-    cd $FASD_DIR
-    sudo make install
-fi;
+echo "Installing fasd from source";
+git clone --depth=1 https://github.com/clvv/fasd.git $FASD_DIR || {
+echo "Error: git clone of fasd repo failed"
+}
+cd $FASD_DIR
+sudo make install
