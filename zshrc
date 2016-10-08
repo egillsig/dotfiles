@@ -80,9 +80,9 @@ alias ea='vim ~/.zshrc'
 alias va='vim ~/.vimrc'
 
 if [ -d ~/.i3 ]; then
-    alias ca='vim ~/.i3/config'
+    alias ca='vim $HOME/.i3/config'
 else
-    alias ca='vim ~/config/.i3/config'
+    alias ca='vim $HOME/.config/i3/config'
 fi;
 
 
