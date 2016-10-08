@@ -5,15 +5,21 @@ HOME_DIR="/home/$USERNAME"
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 OH_MY_ZSH_DIR="$HOME_DIR/.oh-my-zsh"
 FASD_DIR="$HOME_DIR/fasd"
-PACKAGE_MANAGER="/usr/bin/apt"
 
-sudo $PACKAGE_MANAGER install zsh vim tree curl wget make htop
-sudo chsh -s `which zsh` $USERNAME
+# Determine package manager
+if [ `uname -a | awk '{print $2}'` = 'arch' ]; then
+    PACKAGE_INSTALL="pacman -S"
+else
+    PACKAGE_INSTALL="/usr/bin/apt install"
+fi
 
-mkdir $HOME_DIR/.ssh
-touch $HOME_DIR/.ssh/authorized_keys
-chmod 700 $HOME_DIR/.ssh
-chmod 600 $HOME_DIR/.ssh/authorized_keys
+sudo $PACKAGE_INSTALL zsh vim tree curl wget make htop
+#sudo chsh -s `which zsh` $USERNAME
+
+#mkdir $HOME_DIR/.ssh
+#touch $HOME_DIR/.ssh/authorized_keys
+#chmod 700 $HOME_DIR/.ssh
+#chmod 600 $HOME_DIR/.ssh/authorized_keys
 
 # Install oh-my-zsh (source: github.com/robbyrussell/oh-my-zsh/blob/master/tools/install.sh)
 if [ -d "$OH_MY_ZSH_DIR" ]; then
