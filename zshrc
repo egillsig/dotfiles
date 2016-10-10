@@ -85,9 +85,16 @@ else
     alias ca='vim $HOME/.config/i3/config'
 fi;
 
+if [ `uname -a | awk '{print $2}'` = 'arch' ]; then
+    # Running arch, use pacman
+    alias ins="sudo pacman -S"
+    alias rem="sudo pacman -Rs"
+else
+    # Assume debian/ubuntu
+    alias ins='sudo apt install'
+    alias rem='sudo apt remove'
+fi
 
-alias ins='sudo apt install'
-alias rem='sudo apt remove'
 
 #bla programs
 alias blac='vim bla.c'
@@ -102,3 +109,7 @@ alias j='fasd_cd -d'
 # Virtualenvs
 # source ~/.local/bin/virtualenvwrapper.sh
 
+# Colored outputs
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+export GREP_COLOR="1;32"
