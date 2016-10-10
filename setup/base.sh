@@ -16,11 +16,6 @@ fi
 sudo $PACKAGE_INSTALL zsh vim tree curl wget make htop
 #sudo chsh -s `which zsh` $USERNAME
 
-#mkdir $HOME_DIR/.ssh
-#touch $HOME_DIR/.ssh/authorized_keys
-#chmod 700 $HOME_DIR/.ssh
-#chmod 600 $HOME_DIR/.ssh/authorized_keys
-
 # Install oh-my-zsh (source: github.com/robbyrussell/oh-my-zsh/blob/master/tools/install.sh)
 if [ -d "$OH_MY_ZSH_DIR" ]; then
     printf "Oh My Zsh already installed.\n"
@@ -46,9 +41,8 @@ if [ -f $HOME_DIR/.zshrc ]; then
 fi
 ln -vs $DOTFILES_DIR/zshrc $HOME_DIR/.zshrc
 
-echo "Installing fasd from source";
 git clone --depth=1 https://github.com/clvv/fasd.git $FASD_DIR || {
-echo "Error: git clone of fasd repo failed"
+    echo "Error: git clone of fasd repo failed"
 }
 cd $FASD_DIR
 sudo make install
