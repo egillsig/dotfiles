@@ -2,7 +2,7 @@
 
 USERNAME="egill"
 HOME_DIR="/home/$USERNAME"
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 OH_MY_ZSH_DIR="$HOME_DIR/.oh-my-zsh"
 FASD_DIR="$HOME_DIR/fasd"
 
@@ -14,7 +14,7 @@ else
 fi
 
 sudo $PACKAGE_INSTALL zsh vim tree curl wget make htop
-#sudo chsh -s `which zsh` $USERNAME
+sudo chsh -s `which zsh` $USERNAME
 
 # Install oh-my-zsh (source: github.com/robbyrussell/oh-my-zsh/blob/master/tools/install.sh)
 if [ -d "$OH_MY_ZSH_DIR" ]; then
@@ -31,12 +31,12 @@ fi
 
 # Replace dotfiles
 # Vim automatically installs vim-plug and plugins when opened
-if [ -f $HOME_DIR/.vimrc ]; then
-    rm -v $HOME_DIR/.vimrc
+if [ -f $HOME_DIR/.vimrc -o -h $HOME_DIR/.vimrc ]; then
+    rm -v $HOME_DIR/.vimrc;
 fi
 ln -vs $DOTFILES_DIR/vimrc $HOME_DIR/.vimrc
 
-if [ -f $HOME_DIR/.zshrc ]; then
+if [ -f $HOME_DIR/.zshrc -o -h $HOME_DIR/.zshrc ]; then
     rm -v $HOME_DIR/.zshrc
 fi
 ln -vs $DOTFILES_DIR/zshrc $HOME_DIR/.zshrc
