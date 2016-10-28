@@ -113,3 +113,5 @@ alias j='fasd_cd -d'
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 export GREP_COLOR="1;32"
+
+export PATH="$HOME/bin:$PATH"
