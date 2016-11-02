@@ -85,7 +85,8 @@ else
     alias ca='vim $HOME/.config/i3/config'
 fi;
 
-if [ `uname -a | awk '{print $2}'` = 'arch' ]; then
+
+if [ `awk -F = '/ID/{print $2}' /etc/os-release` = 'arch' ]; then
     # Running arch, use pacman
     alias ins="sudo pacman -S"
     alias rem="sudo pacman -Rs"
