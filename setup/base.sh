@@ -7,7 +7,7 @@ OH_MY_ZSH_DIR="$HOME_DIR/.oh-my-zsh"
 FASD_DIR="$HOME_DIR/fasd"
 
 # Determine package manager
-if [ `uname -a | awk '{print $2}'` = 'arch' ]; then
+if [ `awk -F = '/ID/{print $2}' /etc/os-release` = 'arch' ]; then
     PACKAGE_INSTALL="pacman -S"
 else
     PACKAGE_INSTALL="/usr/bin/apt install"

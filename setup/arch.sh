@@ -1,11 +1,10 @@
 #!/bin/sh
 
 # Various drivers/utils
-sudo pacman -S grub
+# sudo pacman -S grub
 sudo pacman -S xf86-input-synaptics
 sudo pacman -S xf86-video-intel
-sudo pacman -S iw
-sudo pacman -S wpa_supplicant dialog
+sudo pacman -S iw wpa_supplicant dialog
 sudo pacman -S alsa-utils
 sudo pacman -S mlocate
 
