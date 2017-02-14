@@ -72,16 +72,32 @@ alias sl='ls'
 alias py='ipython'
 alias his='history | grep'
 
+alias vi='vim'
 alias cim='vim'
 alias bim='vim'
 
 #dotfiles
 alias ea='vim ~/.zshrc'
 alias va='vim ~/.vimrc'
-alias ca='vim ~/.config/i3/config'
+alias xa='vim ~/.Xresources'
 
-alias ins='sudo apt install'
-alias rem='sudo apt remove'
+if [ -d ~/.i3 ]; then
+    alias ca='vim $HOME/.i3/config'
+else
+    alias ca='vim $HOME/.config/i3/config'
+fi;
+
+
+if [ `awk -F = '/ID_LIKE/{print $2}' /etc/os-release` = 'archlinux' ]; then
+    # Running arch, use pacman
+    alias ins="sudo pacman -S"
+    alias rem="sudo pacman -Rs"
+else
+    # Assume debian/ubuntu
+    alias ins='sudo apt install'
+    alias rem='sudo apt remove'
+fi
+
 
 #bla programs
 alias blac='vim bla.c'
@@ -96,3 +112,34 @@ alias j='fasd_cd -d'
 # Virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source ~/.local/bin/virtualenvwrapper.sh
+
+# Colored outputs
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+export GREP_COLOR="1;32"
+
+export PATH="$HOME/bin:$PATH"
+
+export LESS=-R
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+
+
+man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
+
+bindkey -e
+
+alias gll='git log --oneline --decorate --graph -n 20'
