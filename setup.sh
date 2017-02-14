@@ -62,6 +62,7 @@ else
 fi;
 
 # Python installation
-sudo apt install python3-pip
-sudo apt install virtualenv
+sudo $PACKAGE_MANAGER install python3-pip
+sudo $PACKAGE_MANAGER install virtualenv
 pip3 install --user virtualenvwrapper
+sudo pip3 install ipython
