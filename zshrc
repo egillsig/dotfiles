@@ -118,6 +118,5 @@ export GREP_COLOR="1;32"
 export PATH="$HOME/bin:$PATH"
 
 bindkey -e
-stty -ixon
 
 alias gll='git log --oneline --decorate --graph -n 20'

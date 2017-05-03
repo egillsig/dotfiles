@@ -41,6 +41,12 @@ if [ -f $HOME_DIR/.zshrc -o -h $HOME_DIR/.zshrc ]; then
 fi
 ln -vs $DOTFILES_DIR/zshrc $HOME_DIR/.zshrc
 
+# Python installation
+sudo $PACKAGE_MANAGER install python3-pip
+sudo $PACKAGE_MANAGER install virtualenv
+pip3 install --user virtualenvwrapper
+sudo pip3 install ipython
+
 git clone --depth=1 https://github.com/clvv/fasd.git $FASD_DIR || {
     echo "Error: git clone of fasd repo failed"
 }
