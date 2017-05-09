@@ -41,7 +41,11 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git pip python django fasd)
+export EDITOR='vim'
+plugins=(git pip python django fasd gitignore fasd
+         colorize colored-man-pages command-not-found copydir copyfile 
+         docker docker-compose virtualenvwrapper)
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,7 +59,6 @@ export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -105,12 +108,7 @@ alias blacp='vim bla.cpp'
 alias blap='vim bla.py'
 
 # fasd
-eval "$(fasd --init auto)"
-alias v='f -e vim'
 alias j='fasd_cd -d'
-
-# Virtualenvs
-source /usr/bin/virtualenvwrapper.sh
 
 # Colored outputs
 alias diff='diff --color=auto'
@@ -119,27 +117,6 @@ export GREP_COLOR="1;32"
 
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$HOME/bin:$PATH"
 
-export LESS=-R
-export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
-export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
-export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
-export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
-
-
-man() {
-    LESS_TERMCAP_md=$'\e[01;31m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[01;32m' \
-    command man "$@"
-}
-
 bindkey -e
-stty -ixon
 
 alias gll='git log --oneline --decorate --graph -n 20'

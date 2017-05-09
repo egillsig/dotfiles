@@ -33,10 +33,7 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'venantius/vim-cljfmt', {'for': 'clojure' }
 Plug 'venantius/vim-eastwood', {'for': 'clojure'}
 Plug 'guns/vim-slamhound', {'for': 'clojure'}
-
-"" snippets
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+Plug 'fisadev/vim-isort', {'for': 'python' }
 
 " Github repos of the user 'vim-scripts'
 " => can omit the username part
@@ -134,6 +131,7 @@ autocmd FileType scheme setlocal shiftwidth=2 softtabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2
 autocmd FileType tex setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sml setlocal shiftwidth=2 softtabstop=2
+autocmd FileType xml setlocal shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 softtabstop=2
 autocmd FileType erb setlocal shiftwidth=2 softtabstop=2
@@ -162,8 +160,6 @@ let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
 let g:syntastic_python_flake8_args = "--max-line-length=90"
 let g:syntastic_python_exec = '/usr/bin/env python'
 
-set omnifunc=syntaxcomplete#Complete
-
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
@@ -178,8 +174,7 @@ let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
 nnoremap <C-s> :TlistToggle<CR>
-map <C-n> :NERDTreeToggle<CR>
-
+map <C-n> :NERDTreeToggle<CR> 
 let mapleader = ","
 
 set wrap
@@ -199,21 +194,9 @@ nnoremap <C-g> :call NumberToggle()<CR>
 set wrap
 set lbr
 set splitright
+
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-" let g:ycm_autoclose_preview_window_after_completion=1
-" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
