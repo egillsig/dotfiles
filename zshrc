@@ -117,7 +117,7 @@ alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 export GREP_COLOR="1;32"
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$(ruby -e 'print Gem.user_dir')/bin:$HOME/bin:$PATH"
 
 export LESS=-R
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold

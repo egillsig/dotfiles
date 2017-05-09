@@ -17,7 +17,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe',  { 'do': './install.py' }
+" Plug 'Valloric/YouCompleteMe',  { 'do': './install.py' }
 
 Plug 'vimwiki/vimwiki'
 
@@ -28,6 +28,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " language-specific
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'venantius/vim-cljfmt', {'for': 'clojure' }
 Plug 'venantius/vim-eastwood', {'for': 'clojure'}
@@ -39,7 +40,6 @@ Plug 'guns/vim-slamhound', {'for': 'clojure'}
 
 " Github repos of the user 'vim-scripts'
 " => can omit the username part
-" Plug 'AutomaticLaTeXPlugin'
 Plug 'paredit.vim', { 'for': 'clojure' }
 Plug 'taglist.vim'
 
@@ -69,6 +69,7 @@ set mouse=a   " Enable mouse usage (all modes)
 
 set background=dark
 colorscheme lucid
+set undofile
 
 
 " Autoreload .vimrc
@@ -180,3 +181,39 @@ nnoremap <C-s> :TlistToggle<CR>
 map <C-n> :NERDTreeToggle<CR>
 
 let mapleader = ","
+
+set wrap
+set linebreak
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-g> :call NumberToggle()<CR>
+
+set wrap
+set lbr
+set splitright
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" let g:ycm_autoclose_preview_window_after_completion=1
+" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
