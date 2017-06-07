@@ -18,8 +18,11 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 " Plug 'Valloric/YouCompleteMe',  { 'do': './install.py' }
+Plug 'mileszs/ack.vim'
 
 Plug 'vimwiki/vimwiki'
+Plug 'vim-scripts/taglist.vim'
+Plug 'fholgado/minibufexpl.vim'
 
 " statusline + colors
 Plug 'flazz/vim-colorschemes'
@@ -34,11 +37,10 @@ Plug 'venantius/vim-cljfmt', {'for': 'clojure' }
 Plug 'venantius/vim-eastwood', {'for': 'clojure'}
 Plug 'guns/vim-slamhound', {'for': 'clojure'}
 Plug 'fisadev/vim-isort', {'for': 'python' }
-
-" Github repos of the user 'vim-scripts'
-" => can omit the username part
-Plug 'paredit.vim', { 'for': 'clojure' }
-Plug 'taglist.vim'
+Plug 'jmcantrell/vim-virtualenv', {'for': 'python' }
+" Plug 'mkomitee/vim-gf-python', {'for': 'python' }
+Plug 'guyzmo/vim-gf-python', {'for': 'python' }
+Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
 
 call plug#end()
 
@@ -155,7 +157,7 @@ augroup END
 
 au Filetype clojure nmap <c-c><c-k> :Require<cr>
 
-let g:syntastic_python_checkers = ['pylint', 'pyflakes', 'flake8']
+let g:syntastic_python_checkers = ['pyflakes', 'flake8']
 let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
 let g:syntastic_python_flake8_args = "--max-line-length=90"
 let g:syntastic_python_exec = '/usr/bin/env python'
@@ -174,7 +176,7 @@ let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
 nnoremap <C-s> :TlistToggle<CR>
-map <C-n> :NERDTreeToggle<CR> 
+map <C-n> :NERDTreeToggle<CR>
 let mapleader = ","
 
 set wrap
@@ -194,6 +196,8 @@ nnoremap <C-g> :call NumberToggle()<CR>
 set wrap
 set lbr
 set splitright
+
+set undofile
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
