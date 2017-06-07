@@ -17,6 +17,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/taglist.vim'
 " Plug 'Valloric/YouCompleteMe',  { 'do': './install.py' }
 Plug 'mileszs/ack.vim'
 
@@ -36,11 +37,42 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'venantius/vim-cljfmt', {'for': 'clojure' }
 Plug 'venantius/vim-eastwood', {'for': 'clojure'}
 Plug 'guns/vim-slamhound', {'for': 'clojure'}
-Plug 'fisadev/vim-isort', {'for': 'python' }
-Plug 'jmcantrell/vim-virtualenv', {'for': 'python' }
-" Plug 'mkomitee/vim-gf-python', {'for': 'python' }
-Plug 'guyzmo/vim-gf-python', {'for': 'python' }
+
 Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
+
+" Plug 'python-mode/python-mode', { 'for': 'python' }
+" let g:pymode_python = 'python3'
+
+" Virtualenv begin
+" Function to activate a virtualenv in the embedded interpreter for
+" omnicomplete and other things like that.
+function! LoadVirtualEnv(path)
+    let activate_this = a:path . '/bin/activate_this.py'
+    if getftype(a:path) == "dir" && filereadable(activate_this)
+        python3 << EOF
+import vim
+import sys
+import os
+activate_this = vim.eval('l:activate_this')
+# Activate virtualenv
+exec(open(activate_this).read(), dict(__file__=activate_this))
+# Setting correct path ensures comands like gf search in virtualenv libraries
+for p in sys.path:
+    # Add each directory in sys.path, if it exists.
+    if os.path.isdir(p):
+        # Command 'set' needs backslash before each space.
+        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+EOF
+    endif
+endfunction
+
+if has("python3") && !empty($VIRTUAL_ENV)
+    call LoadVirtualEnv($VIRTUAL_ENV)
+    set path+=expand("<sfile>")
+endif
+" Virtualenv end
+Plug 'fisadev/vim-isort', {'for': 'python' }
+" Plug 'guyzmo/vim-gf-python', {'for': 'python'}
 
 call plug#end()
 
@@ -61,7 +93,9 @@ endif
 set showcmd     " Show (partial) command in status line.
 set showmatch   " Show matching brackets.
 set ignorecase  " Do case insensitive matching
+set infercase   " Case insensitive completion matching still completes case sensitively
 set smartcase   " Do smart case matching (case sensitive iff pattern contains an uppercase letter)
+set tagcase=match
 set autowrite   " Automatically save before commands like :next and :make
 set hidden    " Hide buffers when they are abandoned
 set mouse=a   " Enable mouse usage (all modes)
@@ -108,7 +142,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " Standard CtrlP also in insert mode
-imap <C-p> <ESC>:CtrlP<CR>
+" imap <C-p> <ESC>:CtrlP<CR>
 
 " Shortcuts
 " imap <C-w> <Esc><C-w> " move through windows in insert mode
@@ -166,9 +200,11 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 
-let g:airline_theme='bubblegum'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
+" let g:airline_theme='wombat'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '◀'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts = 1
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
