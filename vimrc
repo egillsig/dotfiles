@@ -42,37 +42,10 @@ Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
 
 " Plug 'python-mode/python-mode', { 'for': 'python' }
 " let g:pymode_python = 'python3'
-
-" Virtualenv begin
-" Function to activate a virtualenv in the embedded interpreter for
-" omnicomplete and other things like that.
-function! LoadVirtualEnv(path)
-    let activate_this = a:path . '/bin/activate_this.py'
-    if getftype(a:path) == "dir" && filereadable(activate_this)
-        python3 << EOF
-import vim
-import sys
-import os
-activate_this = vim.eval('l:activate_this')
-# Activate virtualenv
-exec(open(activate_this).read(), dict(__file__=activate_this))
-# Setting correct path ensures comands like gf search in virtualenv libraries
-for p in sys.path:
-    # Add each directory in sys.path, if it exists.
-    if os.path.isdir(p):
-        # Command 'set' needs backslash before each space.
-        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-EOF
-    endif
-endfunction
-
-if has("python3") && !empty($VIRTUAL_ENV)
-    call LoadVirtualEnv($VIRTUAL_ENV)
-    set path+=expand("<sfile>")
-endif
-" Virtualenv end
 Plug 'fisadev/vim-isort', {'for': 'python' }
 " Plug 'guyzmo/vim-gf-python', {'for': 'python'}
+Plug 'tmhedberg/SimpylFold', {'for': 'python'}
+
 
 call plug#end()
 
