@@ -20,10 +20,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/taglist.vim'
 " Plug 'Valloric/YouCompleteMe',  { 'do': './install.py' }
 Plug 'mileszs/ack.vim'
+Plug 'ervandew/supertab'
 
 Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/taglist.vim'
-Plug 'fholgado/minibufexpl.vim'
+Plug 'ap/vim-buftabline'
 
 " statusline + colors
 Plug 'flazz/vim-colorschemes'
@@ -40,10 +41,7 @@ Plug 'guns/vim-slamhound', {'for': 'clojure'}
 
 Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
 
-" Plug 'python-mode/python-mode', { 'for': 'python' }
-" let g:pymode_python = 'python3'
 Plug 'fisadev/vim-isort', {'for': 'python' }
-" Plug 'guyzmo/vim-gf-python', {'for': 'python'}
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 
 
@@ -213,3 +211,19 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" buftabline settings
+let g:buftabline_show = 1 " Only show if at least two buffers
+let g:buftabline_numbers = 1
+nmap <leader><Tab> :bnext<CR>
+
+inoremap <C-]> <C-X><C-]>
+inoremap <C-F> <C-X><C-F>
+inoremap <C-D> <C-X><C-D>
+inoremap <C-L> <C-X><C-L>
+
+" Context-sensitive supertab completion
+" recognizes / (filenames) ., :: and -> (omni)
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabClosePreviewOnPopupClose = 1
+
