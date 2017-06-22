@@ -20,10 +20,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/taglist.vim'
 " Plug 'Valloric/YouCompleteMe',  { 'do': './install.py' }
 Plug 'mileszs/ack.vim'
+Plug 'ervandew/supertab'
 
 Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/taglist.vim'
-Plug 'fholgado/minibufexpl.vim'
+Plug 'ap/vim-buftabline'
 
 " statusline + colors
 Plug 'flazz/vim-colorschemes'
@@ -40,39 +41,9 @@ Plug 'guns/vim-slamhound', {'for': 'clojure'}
 
 Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
 
-" Plug 'python-mode/python-mode', { 'for': 'python' }
-" let g:pymode_python = 'python3'
-
-" Virtualenv begin
-" Function to activate a virtualenv in the embedded interpreter for
-" omnicomplete and other things like that.
-function! LoadVirtualEnv(path)
-    let activate_this = a:path . '/bin/activate_this.py'
-    if getftype(a:path) == "dir" && filereadable(activate_this)
-        python3 << EOF
-import vim
-import sys
-import os
-activate_this = vim.eval('l:activate_this')
-# Activate virtualenv
-exec(open(activate_this).read(), dict(__file__=activate_this))
-# Setting correct path ensures comands like gf search in virtualenv libraries
-for p in sys.path:
-    # Add each directory in sys.path, if it exists.
-    if os.path.isdir(p):
-        # Command 'set' needs backslash before each space.
-        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-EOF
-    endif
-endfunction
-
-if has("python3") && !empty($VIRTUAL_ENV)
-    call LoadVirtualEnv($VIRTUAL_ENV)
-    set path+=expand("<sfile>")
-endif
-" Virtualenv end
 Plug 'fisadev/vim-isort', {'for': 'python' }
-" Plug 'guyzmo/vim-gf-python', {'for': 'python'}
+Plug 'tmhedberg/SimpylFold', {'for': 'python'}
+
 
 call plug#end()
 
@@ -240,3 +211,19 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" buftabline settings
+let g:buftabline_show = 1 " Only show if at least two buffers
+let g:buftabline_numbers = 1
+nmap <leader><Tab> :bnext<CR>
+
+inoremap <C-]> <C-X><C-]>
+inoremap <C-F> <C-X><C-F>
+inoremap <C-D> <C-X><C-D>
+inoremap <C-L> <C-X><C-L>
+
+" Context-sensitive supertab completion
+" recognizes / (filenames) ., :: and -> (omni)
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabClosePreviewOnPopupClose = 1
+
