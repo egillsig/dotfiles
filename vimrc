@@ -44,6 +44,12 @@ Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
 Plug 'fisadev/vim-isort', {'for': 'python' }
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 
+" Plug 'python-mode/python-mode', { 'for': 'python' }
+" let g:pymode_python = 'python3'
+" Plug 'davidhalter/jedi-vim', {'for': 'python' }
+" Plug 'guyzmo/vim-gf-python', {'for': 'python'}
+" Plug 'fs111/pydoc.vim', {'for': 'python'}
+" Plug 'vim-scripts/pydoc.vim', {'for': 'python'}
 
 call plug#end()
 
@@ -170,6 +176,9 @@ let g:syntastic_python_exec = '/usr/bin/env python'
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+set undofile
+set wrap
+set linebreak
 
 " let g:airline_theme='wombat'
 " let g:airline_left_sep = '▶'
@@ -186,9 +195,6 @@ nnoremap <C-s> :TlistToggle<CR>
 map <C-n> :NERDTreeToggle<CR>
 let mapleader = ","
 
-set wrap
-set linebreak
-
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
@@ -200,11 +206,15 @@ endfunc
 
 nnoremap <C-g> :call NumberToggle()<CR>
 
-set wrap
-set lbr
-set splitright
-
-set undofile
+" Complete-mode mappings
+" tags
+inoremap <C-]> <C-X><C-]>
+" filenames
+inoremap <C-F> <C-X><C-F>
+" definitions or macros
+inoremap <C-D> <C-X><C-D>
+" whole lines
+inoremap <C-L> <C-X><C-L>
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -217,13 +227,13 @@ let g:buftabline_show = 1 " Only show if at least two buffers
 let g:buftabline_numbers = 1
 nmap <leader><Tab> :bnext<CR>
 
-inoremap <C-]> <C-X><C-]>
-inoremap <C-F> <C-X><C-F>
-inoremap <C-D> <C-X><C-D>
-inoremap <C-L> <C-X><C-L>
-
+" supertab
 " Context-sensitive supertab completion
 " recognizes / (filenames) ., :: and -> (omni)
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabClosePreviewOnPopupClose = 1
+
+" Ack
+let g:ackhighlight = 1
+nnoremap <Leader>a :Ack!<Space>
 
