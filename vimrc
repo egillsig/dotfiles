@@ -82,6 +82,7 @@ set mouse=a   " Enable mouse usage (all modes)
 set background=dark
 colorscheme lucid
 set undofile
+set undodir=~/.vim/undo
 
 
 " Autoreload .vimrc
@@ -136,25 +137,18 @@ cmap Wq wq
 imap jk <Esc>
 vmap <CR> <Esc>
 
-
-" IDE like curly braces
-inoremap {<cr> {<cr>}<c-o>O
-" inoremap [<cr> [<cr>]<c-o>O
-" inoremap (<cr> (<cr>)<c-o>O)
-
 autocmd FileType scheme setlocal shiftwidth=2 softtabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2
 autocmd FileType tex setlocal shiftwidth=2 softtabstop=2
 autocmd FileType sml setlocal shiftwidth=2 softtabstop=2
 autocmd FileType xml setlocal shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
+autocmd FileType vue setlocal shiftwidth=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 softtabstop=2
 autocmd FileType erb setlocal shiftwidth=2 softtabstop=2
 autocmd FileType vim setlocal shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
-let g:syntastic_scala_checkers = ['']
-let g:syntastc_disabled_filetypes=['java']
 
 augroup filetypedetect
   au! BufRead,BufNewFile *.sage,*.spyx,*.pyx setfiletype python
@@ -169,6 +163,17 @@ augroup filetypedetect
 augroup END
 
 au Filetype clojure nmap <c-c><c-k> :Require<cr>
+
+" au Filetype javascript setlocal path+=$PWD/node_modules,$PWD/node_modules/.bin suffixesadd+=.js
+
+" Syntastic
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_scala_checkers = ['']
+" let g:syntastc_disabled_filetypes=['java']
+
+let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_python_checkers = ['pyflakes', 'flake8']
 let g:syntastic_python_pylint_args = "--load-plugins pylint_django"
@@ -227,7 +232,9 @@ nnoremap <C-H> <C-W><C-H>
 " buftabline settings
 let g:buftabline_show = 1 " Only show if at least two buffers
 let g:buftabline_numbers = 1
-nmap <leader><Tab> :bnext<CR>
+nmap <leader><tab> :bnext<CR>
+nmap <leader><s-tab> :bNext<CR>
+nmap <leader>bd :bp\|bd #<CR>
 
 " supertab
 " Context-sensitive supertab completion
