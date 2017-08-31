@@ -34,16 +34,18 @@ Plug 'vim-airline/vim-airline-themes'
 " language-specific
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
+
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'venantius/vim-cljfmt', {'for': 'clojure' }
 Plug 'venantius/vim-eastwood', {'for': 'clojure'}
 Plug 'guns/vim-slamhound', {'for': 'clojure'}
-
-Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
+" Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
+Plug 'guns/vim-sexp', {'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure' }
+Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
 
 Plug 'fisadev/vim-isort', {'for': 'python' }
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-
 " Plug 'python-mode/python-mode', { 'for': 'python' }
 " let g:pymode_python = 'python3'
 " Plug 'davidhalter/jedi-vim', {'for': 'python' }
@@ -236,4 +238,41 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 " Ack
 let g:ackhighlight = 1
 nnoremap <Leader>a :Ack!<Space>
+
+" Rainbow parenthesis
+au FileType clojure RainbowParenthesesActivate
+au FileType clojure RainbowParenthesesLoadRound
+au FileType clojure RainbowParenthesesLoadSquare
+au FileType clojure RainbowParenthesesLoadBraces
+
+" rainbow paren colors (reverse direction, removed black from default list)
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+" Python folding settings
+let g:SimpylFold_fold_docstring=0
+let g:SimpylFold_fold_import=0
+
+" Folding shortcuts toggle w/space in insert mode, create folds in visual mode
+nnoremap <space> za
+vnoremap <space> zf
+
+let g:vue_disable_pre_processors=1
+
+let g:ctrlp_custom_ignore = 'node_modules\|git'
 
