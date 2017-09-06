@@ -122,3 +122,6 @@ bindkey -e
 alias gll='git log --oneline --decorate --graph -n 20'
 alias ct='ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags $(python -c "import os, sys; print(\" \".join(\"{}\".format(d) for d in sys.path if os.path.isdir(d)))") .'
 unalias s
+
+# make CTRL-S not freeze vim
+stty -ixon

@@ -18,9 +18,16 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/taglist.vim'
-" Plug 'Valloric/YouCompleteMe',  { 'do': './install.py' }
+Plug 'Valloric/YouCompleteMe',  { 'do': './install.py' }
+Plug 'SirVer/ultisnips'
 Plug 'mileszs/ack.vim'
+Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+
+Plug 'tpope/vim-dispatch'
 
 Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/taglist.vim'
@@ -35,23 +42,17 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 
+" Clojure
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'venantius/vim-cljfmt', {'for': 'clojure' }
 Plug 'venantius/vim-eastwood', {'for': 'clojure'}
 Plug 'guns/vim-slamhound', {'for': 'clojure'}
-" Plug 'vim-scripts/paredit.vim', { 'for': 'clojure' }
 Plug 'guns/vim-sexp', {'for': 'clojure' }
 Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure' }
 Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
 
 Plug 'fisadev/vim-isort', {'for': 'python' }
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-" Plug 'python-mode/python-mode', { 'for': 'python' }
-" let g:pymode_python = 'python3'
-" Plug 'davidhalter/jedi-vim', {'for': 'python' }
-" Plug 'guyzmo/vim-gf-python', {'for': 'python'}
-" Plug 'fs111/pydoc.vim', {'for': 'python'}
-" Plug 'vim-scripts/pydoc.vim', {'for': 'python'}
 
 call plug#end()
 
@@ -236,15 +237,32 @@ nmap <leader><tab> :bnext<CR>
 nmap <leader><s-tab> :bNext<CR>
 nmap <leader>bd :bp\|bd #<CR>
 
+
+inoremap <C-]> <C-X><C-]>
+inoremap <C-F> <C-X><C-F>
+inoremap <C-D> <C-X><C-D>
+inoremap <C-L> <C-X><C-L>
+
+" Vim-plug shortcuts
+nmap <leader>pi :PlugInstall<CR>
+
 " supertab
 " Context-sensitive supertab completion
 " recognizes / (filenames) ., :: and -> (omni)
 let g:SuperTabDefaultCompletionType = "context"
+" Close preview window
 let g:SuperTabClosePreviewOnPopupClose = 1
 
 " Ack
 let g:ackhighlight = 1
 nnoremap <Leader>a :Ack!<Space>
+
+" YCM
+" autoclose preview window
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Rainbow parenthesis
 au FileType clojure RainbowParenthesesActivate
@@ -272,6 +290,7 @@ let g:rbpt_colorpairs = [
     \ ]
 
 " Python folding settings
+let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring=0
 let g:SimpylFold_fold_import=0
 
@@ -283,3 +302,5 @@ let g:vue_disable_pre_processors=1
 
 let g:ctrlp_custom_ignore = 'node_modules\|git'
 
+" vim sexp
+let g:sexp_insert_after_wrap = 0
